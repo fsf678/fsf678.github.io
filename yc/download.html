@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>download</title>
+    <script src="https://fsf678.github.io/yc/download.min.js"></script>
 </head>
 <body>
     <h1>PurpleApple</h1>
     <p>暂不支持直接保存到相册,已调用浏览器为您下载</p>
     <script>
-        url = window.location.href
+        fileUrl = window.location.href.replace('https://fsf678.github.io/yc/download.html?','')
+        download(fileUrl)
     </script>
 </body>
 </html>

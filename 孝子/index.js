@@ -45,7 +45,7 @@ marked.use({
 });
 
 // 从cookie中获取用户的theme
-const theme = docCookies.getItem('theme');
+let theme = docCookies.getItem('theme');
 if (theme == null) {
     console.log('Set cookies for saving the theme');
     docCookies.setItem(name = 'theme', value = 'auto', end = Infinity, domain = window.location.host)

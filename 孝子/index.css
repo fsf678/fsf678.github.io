@@ -1,0 +1,50 @@
+@font-face {
+    font-family: yuanshen;
+    src: url('yuanshen.ttf');
+}
+
+#search-body {
+    width: 60%;
+    min-width: 700px;
+    height: 60%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: relative;
+    transition: transform 0.5s ease;
+}
+
+@keyframes moveTopAnimation {
+    from {
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    to {
+        top: 2%;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* 你可以通过JavaScript来添加动画类，而不是直接在CSS中触发动画 */
+.animate-top {
+    animation: moveTopAnimation 0.5s forwards;
+    /* forwards 表示动画完成后保留最后一帧的样式 */
+}
+
+.part {
+    width: 70%;
+    min-width: 700px;
+    top: 15px;
+
+    display: flex;
+    justify-content: center;
+    /* 水平居中 */
+    align-items: center;
+    /* 垂直居中 */
+    /* 或其他高度，以确保有足够的空间进行垂直居中 */
+}
+
+.inside-content {
+    width: 95%;
+}

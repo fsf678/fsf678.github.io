@@ -1,1 +1,77 @@
-test
+<html lang="zh-CN" style="font-family: Noto Sans SC;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+    <meta name="renderer" content="webkit" />
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- 如果使用了组件的 icon 属性，还需要引入图标的 CSS 文件 -->
+
+    <title>原信网 - 你所热爱的,就是你的生活</title>
+</head>
+
+<body>
+    <mdui-navigation-rail contained divider value="search" alignment="center">
+        <h1 style="font-family: yuanshen;" slot="top">信</h1>
+
+        <mdui-dropdown slot="bottom" placement="right-end">
+            <mdui-button-icon id="theme-icon" slot="trigger"></mdui-button-icon>
+            <mdui-menu submenu-trigger="click hover" submenu-open-delay="200" submenu-close-delay="200" selects="single"
+                id="theme-menu">
+                <mdui-menu-item value="light">亮色模式</mdui-menu-item>
+                <mdui-menu-item value="dark">暗色模式</mdui-menu-item>
+                <mdui-divider></mdui-divider>
+                <mdui-menu-item value="auto" tabindex="0" selected="">跟随系统</mdui-menu-item>
+            </mdui-menu>
+        </mdui-dropdown>
+
+        <p slot="bottom"></p> <!--占位-->
+
+        <mdui-navigation-rail-item icon="search" value="search">查询</mdui-navigation-rail-item>
+        <mdui-navigation-rail-item icon="report" value="report">举报</mdui-navigation-rail-item>
+        <mdui-navigation-rail-item icon="sentiment_very_satisfied" value="joke">笑话</mdui-navigation-rail-item>
+    </mdui-navigation-rail>
+
+    <div id="search-body">
+        <main class="container mdui-prose">
+            <h1 id="main-title">
+                <p style="font-family: yuanshen;">原信网</p> 你所热爱的 就是你的原神
+            </h1>
+            <div id="search-part">
+                <mdui-card style="width: 60%;">
+                    <mdui-text-field style="height: 64px;" placeholder="键入OP爆的典" id="input" type="search">
+                        <mdui-button slot="icon" style="font-size: medium;" id="type-select-button"
+                            onclick="selectOtherType()">搜典</mdui-button>
+                    </mdui-text-field>
+                </mdui-card>
+                &nbsp;
+                <mdui-fab id="fab" icon="search" style="height: 64px;width: 64!important;"></mdui-fab>
+            </div>
+
+            <mdui-card class="part" id="search-result" style="display: none;">
+                <div class="inside-content">
+                    &nbsp;
+                    <h2 style="font-family: yuanshen;" id="search-result-title">
+                        搜索结果
+                        <mdui-divider></mdui-divider>
+                    </h2>
+                    <p id="result-type"></p>
+                    <div id="result-note"></div>
+                    &nbsp;
+                </div>
+            </mdui-card>
+
+        </main>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

@@ -100,8 +100,8 @@ function getJson(url) {
     }
 }
 
-ypList = getJson('https://fsf678.github.io/yuanXinList.json');
-const articles = getJson('https://fsf678.github.io/yuanArticles.json')['data'];
+ypList = getJson('http://xn--qvrw50dh7j.top/yuanXinList.json');
+const articles = getJson('http://xn--qvrw50dh7j.top/yuanArticles.json')['data'];
 
 function people() {
     let result = ypList[input.value];

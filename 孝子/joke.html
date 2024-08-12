@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <mdui-navigation-rail contained divider value="search" alignment="center">
+    <mdui-navigation-rail contained divider value="search" alignment="center" value="joke">
         <h1 style="font-family: yuanshen;" slot="top">信</h1>
 
         <mdui-dropdown slot="bottom" placement="right-end">
@@ -36,46 +36,37 @@
 
         <p slot="bottom"></p> <!--占位-->
 
-        <mdui-navigation-rail-item icon="search" value="search">查询</mdui-navigation-rail-item>
+        <mdui-navigation-rail-item icon="search" value="search" href="index.html">查询</mdui-navigation-rail-item>
         <mdui-navigation-rail-item icon="report" value="report">举报</mdui-navigation-rail-item>
-        <mdui-navigation-rail-item icon="sentiment_very_satisfied" value="joke"
-            href="joke.html">笑话</mdui-navigation-rail-item>
+        <mdui-navigation-rail-item icon="sentiment_very_satisfied" value="joke">笑话</mdui-navigation-rail-item>
     </mdui-navigation-rail>
 
-    <div id="search-body">
+    <div style="width: 90%;position: relative;left: 10%;">
         <main class="container mdui-prose">
-            <h1 id="main-title">
-                <p style="font-family: yuanshen;">原信网</p> 你所热爱的 就是你的原神
+            <br>
+            <br>
+            <h1 id="main-title" style="font-family: yuanshen;">
+                🔗 站长推荐笑话
             </h1>
-            <div id="search-part">
-                <mdui-card style="width: 60%;">
-                    <mdui-text-field style="height: 64px;" placeholder="键入OP爆的典" id="input" type="search">
-                        <mdui-button slot="icon" style="font-size: medium;" id="type-select-button"
-                            onclick="selectOtherType()">搜典</mdui-button>
-                    </mdui-text-field>
-                </mdui-card>
-                &nbsp;
-                <mdui-fab id="fab" icon="search" style="height: 64px;width: 64!important;"></mdui-fab>
-            </div>
+            <ul>
+                <li>
+                    <a href="https://tieba.baidu.com/f?kw=%E5%8E%9F%E6%89%B9%E7%AC%91%E8%AF%9D&ie=utf-8">原批笑话吧</a>
+                </li>
+                <li>
+                    <a href="https://tieba.baidu.com/f?kw=dinner%E7%AC%91%E8%AF%9D&ie=utf-8">dinner笑话吧</a>
+                </li>
+                <li>
+                    <a href="https://tieba.baidu.com/p/9077344914">OP笑话合订本</a>
+                </li>
+                <li>想要被推荐? 加入网站官方群</li>
+            </ul>
 
-            <mdui-card class="part" id="search-result" style="display: none;">
-                <div class="inside-content">
-                    &nbsp;
-                    <h2 style="font-family: yuanshen;" id="search-result-title">
-                        搜索结果
-                        <mdui-divider></mdui-divider>
-                    </h2>
-                    <p id="result-type"></p>
-                    <div id="result-note"></div>
-                    &nbsp;
-                </div>
             </mdui-card>
 
         </main>
     </div>
 
     <script src="main.js"></script>
-    <script src="index.js"></script>
 </body>
 
 </html>

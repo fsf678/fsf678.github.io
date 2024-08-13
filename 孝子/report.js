@@ -81,6 +81,14 @@ function checkCode(str) {
     }
 }
 
+function getEncode64(str) {
+    // 对字符串进行编码
+    var encode = encodeURI(str);
+    // 对编码的字符串转化base64
+    var base64 = btoa(encode);
+    return base64;
+}
+
 function submit() {
     if (checkCode(codeInput.value)) {
         mdui.alert({
@@ -92,9 +100,8 @@ function submit() {
     }
     let data = {};
     data = { "code": codeInput.value.toUpperCase(), "code_id": code_id, "data_type": "people", "id": uid.value, "type": type.value, "note": note.value };
-
-    let base64string = btoa(JSON.stringify(data));
-    sendData(base64string);
+    let jsonString = JSON.stringify(data);
+    sendData(jsonString);
     refreshCode();
     codeInput.value = "";
 

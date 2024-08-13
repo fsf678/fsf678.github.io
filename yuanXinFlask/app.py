@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import *
 from captcha.image import ImageCaptcha
 import string
 import random
@@ -6,14 +6,29 @@ import uuid
 import base64
 import io
 import json
-
+import os
 
 app = Flask(__name__)
 
 # 示例历史数据（无需审核）
-mxz_data = {
-    "1292466375": {"type": "超级无敌大帅哥", "note": "非常牛逼,他是本网站的作者"}
-}
+
+# 配置文件路径
+DATA_FILE = 'mxz_data.json'
+
+def load_data():
+    """从文件中加载数据"""
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE, 'r', encoding='utf-8') as file:
+            return json.load(file)
+    return {"1292466375": {"type": "超级无敌大帅哥", "note": "非常牛逼,他是本网站的作者"}}
+
+def save_data(data):
+    """将数据保存到文件"""
+    with open(DATA_FILE, 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+
+# 初始化数据
+mxz_data = load_data()
 
 # 临时存储需要审核的数据
 mxz_pending_review_data = {}
@@ -103,6 +118,7 @@ def review():
 
         # Clear pending_review_data after processing
         mxz_pending_review_data = {}
+        save_data()
         return jsonify({"message": "数据审核并合并成功"})
 
     # Get pending review data and render the review page
@@ -117,14 +133,15 @@ def latest_data():
 def report():
     global codes_answers
     # 从 GET 请求中获取 Base64 编码的字符串
-    base64_string = request.args.get('data')
+    data = request.args.get('data')
+    print(data)
     
     # 解码 Base64 字符串
-    decoded_bytes = base64.b64decode(base64_string)
-    decoded_string = decoded_bytes.decode('utf-8')
+    # decoded_bytes = base64.b64decode(base64_string)
+    # decoded_string = decoded_bytes.decode('utf-8')
     
     # 将解码后的字符串转换为 Python 字典
-    data = json.loads(decoded_string)
+    data = json.loads(data)
     
     if codes_answers[data['code_id']][1] == True:
         return "error"

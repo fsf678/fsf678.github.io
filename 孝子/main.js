@@ -61,6 +61,10 @@ themeMenu.value = theme;
 
 themeMenu.addEventListener('change', function (event) {
     const value = event.target.value;
+    if (value == undefined) {
+        return;
+    }
+
     mdui.setTheme(value);
 
     docCookies.setItem(name = 'theme', value, end = Infinity, domain = window.location.host);

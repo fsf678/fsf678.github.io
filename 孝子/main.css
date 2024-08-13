@@ -16,11 +16,19 @@
 }
 
 .middle {
-    margin: 0 auto;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.middle-app {
+    left: 100px;
+    top: 10px;
+    width: calc(100% - 200px);
 }
 
 .yuanshen {
     font-family: yuanshen;
+    font-weight: 400;
 }
 
 @keyframes moveTopAnimation {

@@ -20,9 +20,8 @@
 </head>
 
 <body>
-    <mdui-navigation-rail contained divider value="joke" alignment="center">
+    <mdui-navigation-rail contained divider value="report" alignment="center">
         <h1 class="yuanshen" slot="top">信</h1>
-
 
         <mdui-button-icon icon="group_add" slot="bottom" href="https://qm.qq.com/q/hw4zh5bl2U"
             target="_blank"></mdui-button-icon>
@@ -43,36 +42,25 @@
         <p slot="bottom"></p> <!--占位-->
 
         <mdui-navigation-rail-item icon="search" value="search" href="index.html">查询</mdui-navigation-rail-item>
-        <mdui-navigation-rail-item icon="report" value="report" href="report.html">举报</mdui-navigation-rail-item>
-        <mdui-navigation-rail-item icon="sentiment_very_satisfied" value="joke">笑话</mdui-navigation-rail-item>
+        <mdui-navigation-rail-item icon="report" value="report">举报</mdui-navigation-rail-item>
+        <mdui-navigation-rail-item icon="sentiment_very_satisfied" value="joke"
+            href="joke.html">笑话</mdui-navigation-rail-item>
     </mdui-navigation-rail>
 
-    <div style="width: 90%;position: relative;left: 10%;">
-        <main class="container mdui-prose">
-            <br>
-            <br>
-            <h1 id="main-title" class="yuanshen">
-                🔗 站长推荐笑话
-            </h1>
-            <ul>
-                <li>
-                    <a href="https://tieba.baidu.com/f?kw=%E5%8E%9F%E6%89%B9%E7%AC%91%E8%AF%9D&ie=utf-8">原批笑话吧</a>
-                </li>
-                <li>
-                    <a href="https://tieba.baidu.com/f?kw=dinner%E7%AC%91%E8%AF%9D&ie=utf-8">dinner笑话吧</a>
-                </li>
-                <li>
-                    <a href="https://tieba.baidu.com/p/9077344914">OP笑话合订本</a>
-                </li>
-                <li>
-                    <a href="https://qm.qq.com/q/hw4zh5bl2U" style="font-size: x-large;">想要被推荐? 立即加入网站官方群</a>
-                </li>
-            </ul>
+    <br>
+    <mdui-card class="middle" style="width: 80%;">
+        <h1 class="yuanshen">&nbsp;&nbsp;😘 欢迎举报! ( 典/人 )</h1>
 
-            </mdui-card>
+        <mdui-tabs value="tab-1" variant="primary" style="left: 20px;width: 90%;">
+            <mdui-tab value="tab-1">OP爆的典</mdui-tab>
+            <mdui-tab value="tab-2">人(BiliBili UID)</mdui-tab>
+            <p>#注: 当前睿站mxz太多,举报后并被站长审核,可标记该mxz,并可在"查询"页面查询</p>
 
-        </main>
-    </div>
+            <mdui-tab-panel slot="panel" value="tab-1">Panel 1</mdui-tab-panel>
+            <mdui-tab-panel slot="panel" value="tab-2">Panel 2</mdui-tab-panel>
+        </mdui-tabs>
+
+    </mdui-card>
 
     <script src="main.js"></script>
 </body>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提交数据页面</title>
+</head>
+
+<body class="mdui-theme-primary-blue mdui-theme-accent-blue">
+    <form method="POST" action="/submit_for_review">
+        <h1 class="mdui-typo-headline">
+            提交数据
+        </h1>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">ID</label>
+            <input class="mdui-textfield-input" type="text" name="id" required>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">类型</label>
+            <input class="mdui-textfield-input" type="text" name="type" required>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">备注</label>
+            <input class="mdui-textfield-input" type="text" name="note" required>
+        </div>
+        <button type="submit">提交</button>
+    </form>
+</body>
+
+</html>

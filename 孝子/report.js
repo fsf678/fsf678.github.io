@@ -1,7 +1,12 @@
 let code_id
+const codeInput = document.getElementById('code-input');
+const uid = document.getElementById('uid');
+const type = document.getElementById('type');
+const note = document.getElementById('note');
+const apiUrl = "http://127.0.0.1:5000"
 
 function refreshCode() {
-    fetch('http://127.0.0.1:5000/code')
+    fetch(apiUrl + '/code')
         .then(response => response.json())
         .then(data => {
             // 获取 img 元素
@@ -18,6 +23,79 @@ function refreshCode() {
         })
         .catch(error => {
             console.error('Error fetching data:', error);
+            return 'error';
         });
 }
 refreshCode();
+
+function sendData(data) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', apiUrl + '/report?data=' + data, true);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) { // 请求完成
+            if (xhr.status === 200) { // 成功返回
+                if (xhr.responseText == "error") {
+                    mdui.alert({
+                        headline: "(っ °Д °;)っ错误",
+                        description: "验证码可能填错了！(或访问频率过高)",
+                        confirmText: "OK",
+                    });
+                }
+                else if (xhr.responseText == "ok") {
+                    mdui.alert({
+                        headline: "ヾ(≧▽≦*)o成功",
+                        description: "举报信息已提交,感谢您的贡献!",
+                        confirmText: "OK",
+                    });
+                }
+            } else {
+                mdui.alert({
+                    headline: "(っ °Д °;)っ错误",
+                    description: "网络有点小故障(或访问频率过高)",
+                    confirmText: "OK",
+                });
+            }
+        }
+    };
+
+    xhr.onerror = function () {
+        console.error('Network error occurred');
+    };
+
+    xhr.send();
+}
+
+function checkCode(str) {
+    // 检查字符串是否包含中文字符的正则表达式
+    const hasChinese = /[\u4e00-\u9fa5]/.test(str);
+
+    // 检查字符串的长度是否等于4
+    const isLengthFour = str.length === 4;
+
+    // 如果包含中文字符或者长度不等于4，则返回 true
+    if (hasChinese || !isLengthFour) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function submit() {
+    if (checkCode(codeInput.value)) {
+        mdui.alert({
+            headline: "(っ °Д °;)っ错误",
+            description: "验证码的格式不正确",
+            confirmText: "OK",
+        });
+        return;
+    }
+    let data = {};
+    data = { "code": codeInput.value.toUpperCase(), "code_id": code_id, "data_type": "people", "id": uid.value, "type": type.value, "note": note.value };
+
+    let base64string = btoa(JSON.stringify(data));
+    sendData(base64string);
+    refreshCode();
+    codeInput.value = "";
+
+}

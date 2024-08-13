@@ -51,28 +51,23 @@
     <mdui-card class="middle" style="width: 80%;">
         <h1 class="yuanshen">&nbsp;&nbsp;😘 欢迎举报! ( 典/人 )</h1>
 
-        <mdui-tabs value="tab-1" variant="primary" style="left: 20px;width: 90%;">
-            <mdui-tab value="tab-1">OP爆的典</mdui-tab>
-            <mdui-tab value="tab-2">人(BiliBili UID)</mdui-tab>
-            <p>#注: 当前睿站mxz太多,举报后并被站长审核,可标记该mxz,并可在"查询"页面查询</p>
 
-            <mdui-tab-panel slot="panel" value="tab-1">
-                <mdui-text-field label="典"></mdui-text-field>
-            </mdui-tab-panel>
-            <mdui-tab-panel slot="panel" value="tab-2">
-                <mdui-text-field label="UID"></mdui-text-field>
-                <mdui-text-field label="类型(米孝子/串子)"></mdui-text-field>
-                <mdui-text-field label="备注(支持markdown)" rows="3"></mdui-text-field>
-            </mdui-tab-panel>
-        </mdui-tabs>
+        <p>#注: 当前睿站mxz太多,举报后并被站长审核,可标记该mxz,并可在"查询"页面查询</p>
+        <div>
+            <mdui-text-field label="UID" id="uid"></mdui-text-field>
+            <mdui-text-field label="类型(米孝子/串子)" id="type"></mdui-text-field>
+            <mdui-text-field label="备注(支持markdown)" rows="3" id="note"></mdui-text-field>
+        </div>
+
     </mdui-card>
-    <mdui-card style="width: 80%;top:15px;" class="middle">
+
+    <mdui-card style="top:15px;" class="middle">
         <mdui-card style="height: 56px;">
-            <mdui-text-field clearable label="验证码" style="width: calc(100%-72px);" maxlength="4" counter>
+            <mdui-text-field clearable label="验证码" style="width: 100%;" maxlength="4" counter id="code-input">
                 <a slot="icon" href="javascript: refreshCode();"><img id="code"></a>
             </mdui-text-field>
         </mdui-card>
-        <mdui-fab icon="arrow_circle_up"></mdui-fab>
+        <mdui-fab icon="arrow_circle_up" onclick="submit();"></mdui-fab>
     </mdui-card>
 
     <script src="main.js"></script>

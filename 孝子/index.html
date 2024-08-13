@@ -20,8 +20,21 @@
 </head>
 
 <body>
+
+    <mdui-dialog close-on-overlay-click id="site-alert" open="true">
+        <span slot="headline" class="yuanshen">(●'◡'●) 提示</span>
+        <span style="font-size: large;"
+            class="yuanshen">本网站还在建设中,特别是OP爆的典收集较少,查重效果不是很好.并且原P数据库也在建设中,您可以找到侧边栏,打开“举报”页面,为“原信网”添砖加瓦!也希望您可以添加我们的官网交流群<a
+                href="https://qm.qq.com/q/k4cese0CmO">962634959</a>,反馈意见,我们共同成长!</span>
+    </mdui-dialog>
+
     <mdui-navigation-rail contained divider value="search" alignment="center">
-        <h1 style="font-family: yuanshen;" slot="top">信</h1>
+        <h1 class="yuanshen" slot="top">信</h1>
+
+        <mdui-button-icon icon="group_add" slot="bottom" href="https://qm.qq.com/q/hw4zh5bl2U"
+            target="_blank"></mdui-button-icon>
+
+        <p slot="bottom"></p> <!--占位-->
 
         <mdui-dropdown slot="bottom" placement="right-end">
             <mdui-button-icon id="theme-icon" slot="trigger"></mdui-button-icon>
@@ -45,23 +58,23 @@
     <div id="search-body">
         <main class="container mdui-prose">
             <h1 id="main-title">
-                <p style="font-family: yuanshen;">原信网</p> 你所热爱的 就是你的原神
+                <p class="yuanshen">原信网</p> 你所热爱的 就是你的原神
             </h1>
             <div id="search-part">
-                <mdui-card style="width: 60%;">
+                <mdui-card style="width: 60%;top:15px">
                     <mdui-text-field style="height: 64px;" placeholder="键入OP爆的典" id="input" type="search">
                         <mdui-button slot="icon" style="font-size: medium;" id="type-select-button"
                             onclick="selectOtherType()">搜典</mdui-button>
                     </mdui-text-field>
                 </mdui-card>
                 &nbsp;
-                <mdui-fab id="fab" icon="search" style="height: 64px;width: 64!important;"></mdui-fab>
+                <mdui-fab id="fab" icon="search" style="height: 64px;width: 64!important;top:15px"></mdui-fab>
             </div>
 
             <mdui-card class="part" id="search-result" style="display: none;">
                 <div class="inside-content">
                     &nbsp;
-                    <h2 style="font-family: yuanshen;" id="search-result-title">
+                    <h2 class="yuanshen" id="search-result-title">
                         搜索结果
                         <mdui-divider></mdui-divider>
                     </h2>
@@ -70,9 +83,9 @@
                     &nbsp;
                 </div>
             </mdui-card>
-
         </main>
     </div>
+
 
     <script src="main.js"></script>
     <script src="index.js"></script>

@@ -20,8 +20,14 @@
 </head>
 
 <body>
-    <mdui-navigation-rail contained divider value="search" alignment="center" value="joke">
-        <h1 style="font-family: yuanshen;" slot="top">信</h1>
+    <mdui-navigation-rail contained divider value="joke" alignment="center">
+        <h1 class="yuanshen" slot="top">信</h1>
+
+
+        <mdui-button-icon icon="group_add" slot="bottom" href="https://qm.qq.com/q/hw4zh5bl2U"
+            target="_blank"></mdui-button-icon>
+
+        <p slot="bottom"></p> <!--占位-->
 
         <mdui-dropdown slot="bottom" placement="right-end">
             <mdui-button-icon id="theme-icon" slot="trigger"></mdui-button-icon>
@@ -45,7 +51,7 @@
         <main class="container mdui-prose">
             <br>
             <br>
-            <h1 id="main-title" style="font-family: yuanshen;">
+            <h1 id="main-title" class="yuanshen">
                 🔗 站长推荐笑话
             </h1>
             <ul>
@@ -58,7 +64,9 @@
                 <li>
                     <a href="https://tieba.baidu.com/p/9077344914">OP笑话合订本</a>
                 </li>
-                <li>想要被推荐? 加入网站官方群</li>
+                <li>
+                    <a href="https://qm.qq.com/q/hw4zh5bl2U" style="font-size: x-large;">想要被推荐? 立即加入网站官方群</a>
+                </li>
             </ul>
 
             </mdui-card>

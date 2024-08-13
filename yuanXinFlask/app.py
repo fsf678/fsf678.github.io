@@ -1,4 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
+from captcha.image import ImageCaptcha
+import string
+import random
+import uuid
+import base64
+import io
 
 app = Flask(__name__)
 
@@ -9,6 +15,41 @@ historical_data = {
 
 # 临时存储需要审核的数据
 pending_review_data = {}
+
+# 储存验证码
+codes_answers = {}
+
+# 验证码
+def summon_code():
+    global codes_answers
+    characters = string.digits + string.ascii_uppercase
+    width, height, n_len, n_class = 170, 80, 4, len(characters)
+    generator = ImageCaptcha(width=width, height=height)
+    random_str = ''.join([random.choice(characters) for _ in range(n_len)])
+    img = generator.generate_image(random_str)
+    img_id = uuid.uuid4()
+    
+    # Convert image to bytes
+    buffered = io.BytesIO()
+    img.save(buffered, format="PNG")
+    img_bytes = buffered.getvalue()
+    
+    # Encode image bytes to base64
+    img_base64 = base64.b64encode(img_bytes).decode('utf-8')
+    
+    codes_answers[img_id] = [random_str, False]
+    
+    return img_base64, img_id
+
+# 获取验证码
+@app.route('/code', methods=['GET'])
+def code():
+    result = summon_code()
+    img_base64 = result[0]
+    img_id = result[1]
+    
+    return (jsonify( {"img":img_base64,"img_id":img_id } ))
+
 
 # 提交数据的API
 @app.route('/submit_for_review', methods=['POST'])

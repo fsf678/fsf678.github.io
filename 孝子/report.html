@@ -56,13 +56,27 @@
             <mdui-tab value="tab-2">人(BiliBili UID)</mdui-tab>
             <p>#注: 当前睿站mxz太多,举报后并被站长审核,可标记该mxz,并可在"查询"页面查询</p>
 
-            <mdui-tab-panel slot="panel" value="tab-1">Panel 1</mdui-tab-panel>
-            <mdui-tab-panel slot="panel" value="tab-2">Panel 2</mdui-tab-panel>
+            <mdui-tab-panel slot="panel" value="tab-1">
+                <mdui-text-field label="典"></mdui-text-field>
+            </mdui-tab-panel>
+            <mdui-tab-panel slot="panel" value="tab-2">
+                <mdui-text-field label="UID"></mdui-text-field>
+                <mdui-text-field label="类型(米孝子/串子)"></mdui-text-field>
+                <mdui-text-field label="备注(支持markdown)" rows="3"></mdui-text-field>
+            </mdui-tab-panel>
         </mdui-tabs>
-
+    </mdui-card>
+    <mdui-card style="width: 80%;top:15px;" class="middle">
+        <mdui-card style="height: 56px;">
+            <mdui-text-field clearable label="验证码" style="width: calc(100%-72px);" maxlength="4" counter>
+                <a slot="icon" href="javascript: refreshCode();"><img id="code"></a>
+            </mdui-text-field>
+        </mdui-card>
+        <mdui-fab icon="arrow_circle_up"></mdui-fab>
     </mdui-card>
 
     <script src="main.js"></script>
+    <script src="report.js"></script>
 </body>
 
 </html>

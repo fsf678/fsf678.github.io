@@ -24,7 +24,7 @@ function getJson(url) {
     }
 }
 
-ypList = getJson('http://xn--qvrw50dh7j.top/yuanXinList.json');
+ypList = getJson('http://110.42.223.37:8080/latest_data');
 const articles = getJson('http://xn--qvrw50dh7j.top/yuanArticles.json')['data'];
 
 function people() {

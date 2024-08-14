@@ -12,8 +12,6 @@ const input = document.getElementById('input');
 const fab = document.getElementById('fab');
 let haveSearch = false;
 
-let ypList = {};
-
 function getJson(url) {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url, false); // async = false
@@ -24,10 +22,15 @@ function getJson(url) {
     }
 }
 
-ypList = getJson('http://110.42.223.37:8080/latest_data');
+// ypList = getJson('http://110.42.223.37:8080/latest_data');
 const articles = getJson('http://xn--qvrw50dh7j.top/yuanArticles.json')['data'];
 
 function people() {
+    if (typeof (ypList) == 'undefined') {
+        ypList = getJson('http://xn--qvrw50dh7j.top/yuanXinList.json');
+        console.log('镜像站获取mxz list');
+    }
+
     let result = ypList[input.value];
 
     if (result == undefined) { //如果找不到

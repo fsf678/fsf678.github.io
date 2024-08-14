@@ -80,6 +80,16 @@ def code():
     
     return (jsonify( {"img":img_base64,"img_id":img_id } ))
 
+@limiter.limit("240 per minute")
+@app.route('/jsForMxzList', methods=['GET'])
+def jsForMxzList():
+    global mxz_data
+    js_code = """
+    let ypList = {data};
+    """.format(data=json.dumps(mxz_data))
+    
+    return js_code
+
 # 渲染审核页面的API
 @app.route('/'+password+'/review', methods=['GET', 'POST'])
 @limiter.limit("240 per minute")

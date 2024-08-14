@@ -7,28 +7,41 @@ import base64
 import io
 import json
 import os
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 app = Flask(__name__)
+# 初始化 Limiter
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["15 per minute"]
+)
 
-# 示例历史数据（无需审核）
+# 管理密码
+password = 'sRj2KXK9MHeLWcNR9J542P0ybP6KPyy9'
 
 # 配置文件路径
-DATA_FILE = 'mxz_data.json'
+DATA_FILE = 'yuanXinList.json'
 
 def load_data():
     """从文件中加载数据"""
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, 'r', encoding='utf-8') as file:
             return json.load(file)
+    print('没用保存的JSON')
     return {"1292466375": {"type": "超级无敌大帅哥", "note": "非常牛逼,他是本网站的作者"}}
-
-def save_data(data):
-    """将数据保存到文件"""
-    with open(DATA_FILE, 'w', encoding='utf-8') as file:
-        json.dump(data, file, ensure_ascii=False, indent=4)
 
 # 初始化数据
 mxz_data = load_data()
+
+def save_data():
+    """将数据保存到文件"""
+    global mxz_data
+    with open(DATA_FILE, 'w', encoding='utf-8') as file:
+        # 保存mxz_data的json字符串
+        json.dump(mxz_data, file, ensure_ascii=False, indent=4)
+
 
 # 临时存储需要审核的数据
 mxz_pending_review_data = {}
@@ -67,32 +80,11 @@ def code():
     
     return (jsonify( {"img":img_base64,"img_id":img_id } ))
 
-
-# 提交数据的API
-@app.route('/submit_for_review', methods=['POST'])
-def submit_for_review():
-    global mxz_pending_review_data
-    
-    # 获取提交的数据
-    id = request.form.get('id')
-    type_value = request.form.get('type')
-    note_value = request.form.get('note')
-
-    if id and type_value and note_value:
-        # 将数据添加到审核队列
-        mxz_pending_review_data[id] = {"type": type_value, "note": note_value}
-    
-    return redirect(url_for('submit'))
-
-# 渲染提交数据页面
-@app.route('/submit', methods=['GET'])
-def submit():
-    return render_template('submit.html')
-
 # 渲染审核页面的API
-@app.route('/review', methods=['GET', 'POST'])
+@app.route('/'+password+'/review', methods=['GET', 'POST'])
+@limiter.limit("240 per minute")
 def review():
-    global mxz_data, mxz_pending_review_data
+    global mxz_data, mxz_pending_review_data, password
     
     if request.method == 'POST':
         # Check if the delete button was pressed
@@ -122,7 +114,7 @@ def review():
         return jsonify({"message": "数据审核并合并成功"})
 
     # Get pending review data and render the review page
-    return render_template('review.html', data=mxz_pending_review_data)
+    return render_template('review.html', data=mxz_pending_review_data,password=password)
 
 # 返回最新的历史数据的API
 @app.route('/latest_data', methods=['GET'])

@@ -48,6 +48,9 @@ function sendData(data) {
                         description: "举报信息已提交,感谢您的贡献!",
                         confirmText: "OK",
                     });
+                    uid.value = "";
+                    type.value = "";
+                    note.value = "";
                 }
             } else {
                 mdui.alert({
@@ -101,6 +104,7 @@ function submit() {
     let data = {};
     data = { "code": codeInput.value.toUpperCase(), "code_id": code_id, "data_type": "people", "id": uid.value, "type": type.value, "note": note.value };
     let jsonString = JSON.stringify(data);
+    alert(jsonString)
     sendData(jsonString);
     refreshCode();
     codeInput.value = "";

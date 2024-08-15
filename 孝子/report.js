@@ -3,7 +3,7 @@ const codeInput = document.getElementById('code-input');
 const uid = document.getElementById('uid');
 const type = document.getElementById('type');
 const note = document.getElementById('note');
-const apiUrl = "http://api.xn--qvrw50dh7j.top:8080"
+const apiUrl = "http://0.0.0.0:8080"
 
 function refreshCode() {
     fetch(apiUrl + '/code')
@@ -14,7 +14,7 @@ function refreshCode() {
 
             if (imgElement) {
                 // 设置 img 元素的 src 属性
-                imgElement.src = `data:image/png;base64,${data.img}`;
+                imgElement.src = 'data:image/svg+xml;base64,' + btoa(data.img);
 
                 code_id = data.img_id;
             } else {
@@ -22,7 +22,7 @@ function refreshCode() {
             }
         })
         .catch(error => {
-            console.error('Error fetching data:', error);
+            console.log(error);
             return 'error';
         });
 }
@@ -102,7 +102,7 @@ function submit() {
         return;
     }
     let data = {};
-    data = { "code": codeInput.value.toUpperCase(), "code_id": code_id, "data_type": "people", "id": uid.value, "type": type.value, "note": note.value };
+    data = { "code": codeInput.value, "code_id": code_id, "data_type": "people", "id": uid.value, "type": type.value, "note": note.value };
     let jsonString = JSON.stringify(data);
     alert(jsonString)
     sendData(jsonString);

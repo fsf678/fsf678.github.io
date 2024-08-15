@@ -67,7 +67,7 @@ def summon_code():
     # Encode image bytes to base64
     img_base64 = base64.b64encode(img_bytes).decode('utf-8')
     
-    codes_answers[img_id] = [random_str, False]
+    codes_answers[img_id] = random_str
     
     return img_base64, img_id
 
@@ -135,33 +135,36 @@ def latest_data():
 def report():
     global codes_answers
     # 从 GET 请求中获取 Base64 编码的字符串
-    data = request.args.get('data')
-    print(data)
     
-    # 解码 Base64 字符串
-    # decoded_bytes = base64.b64decode(base64_string)
-    # decoded_string = decoded_bytes.decode('utf-8')
-    
-    # 将解码后的字符串转换为 Python 字典
-    data = json.loads(data)
-    
-    if codes_answers[data['code_id']][1] == True:
-        return "error"
-    codes_answers[data['code_id']][1] == True
-    
-    print(data['code'])
-    print(codes_answers[data['code_id']][0])
-    
-    if data['code'] == codes_answers[data['code_id']][0]:
-        if data['data_type'] == 'people':
-            print('已添加')
-            mxz_pending_review_data[data['id']] = {'type':data['type'],'note':data['note']}
-        elif data['data_type'] == "dian":
-            pass
+    try:
+        data = request.args.get('data')
+        print(data)
         
-        return 'ok'
-    else:
+        # 解码 Base64 字符串
+        # decoded_bytes = base64.b64decode(base64_string)
+        # decoded_string = decoded_bytes.decode('utf-8')
+        
+        # 将解码后的字符串转换为 Python 字典
+        data = json.loads(data)
+        
+        print(data['code'])
+        print(codes_answers[data['code_id']])
+        
+        if data['code'] == codes_answers[data['code_id']]:
+            if data['data_type'] == 'people':
+                print('已添加')
+                mxz_pending_review_data[data['id']] = {'type':data['type'],'note':data['note']}
+                codes_answers.pop(data['code_id']) #释放内存
+                
+            elif data['data_type'] == "dian":
+                codes_answers.pop(data['code_id']) #释放内存
+                return '还没做'
+            
+            return 'ok'
+        else:
+            return 'error'
+    except:
         return 'error'
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0",port="8080")

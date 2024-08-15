@@ -22,7 +22,7 @@ function getJson(url) {
     }
 }
 
-// ypList = getJson('http://110.42.223.37:8080/latest_data');
+let ypList = getJson('http://api.xn--qvrw50dh7j.top:8080/latest_data');
 const articles = getJson('http://xn--qvrw50dh7j.top/yuanArticles.json')['data'];
 
 function people() {

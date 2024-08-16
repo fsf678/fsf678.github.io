@@ -23,7 +23,7 @@ limiter = Limiter(
 )
 
 # 管理密码
-password = 'sRj2KXK9MHeLWcNR9J542P0ybP6KPyy9'
+password = 'sRj2KXK9MHeLWcNR9J542P0ybP6KPyy8'
 
 # 配置文件路径
 DATA_FILE = 'yuanXinList.json'

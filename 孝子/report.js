@@ -3,7 +3,7 @@ const codeInput = document.getElementById('code-input');
 const uid = document.getElementById('uid');
 const type = document.getElementById('type');
 const note = document.getElementById('note');
-const apiUrl = "https://api.xn--qvrw50dh7j.top"
+const apiUrl = "http://0.0.0.0:8080"
 
 function refreshCode() {
     fetch(apiUrl + '/code')
@@ -105,7 +105,7 @@ function submit() {
     data = { "code": codeInput.value, "code_id": code_id, "data_type": "people", "id": uid.value, "type": type.value, "note": note.value };
     let jsonString = JSON.stringify(data);
     alert(jsonString)
-    sendData(jsonString);
+    sendData(encodeURIComponent(jsonString));
     refreshCode();
     codeInput.value = "";
 

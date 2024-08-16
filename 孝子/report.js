@@ -102,10 +102,19 @@ function submit() {
         });
         return;
     }
+    if (uid.value == '' || type.value == '' || note.value == '') {
+        mdui.alert({
+            headline: "(っ °Д °;)っ错误",
+            description: "UID,类型或备注没有填写",
+            confirmText: "OK",
+        });
+        return;
+    }
+
     let data = {};
     data = { "code": codeInput.value, "code_id": code_id, "data_type": "people", "id": uid.value, "type": type.value, "note": note.value };
     let jsonString = JSON.stringify(data);
-    alert(jsonString)
+    //alert(jsonString)
     sendData(encodeURIComponent(jsonString));
     refreshCode();
     codeInput.value = "";

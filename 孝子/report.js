@@ -3,7 +3,7 @@ const codeInput = document.getElementById('code-input');
 const uid = document.getElementById('uid');
 const type = document.getElementById('type');
 const note = document.getElementById('note');
-const apiUrl = "http://0.0.0.0:8080"
+const apiUrl = "https://api.xn--qvrw50dh7j.top"
 
 function refreshCode() {
     fetch(apiUrl + '/code')

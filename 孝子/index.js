@@ -22,7 +22,7 @@ function getJson(url) {
     }
 }
 
-let ypList = getJson('http://api.xn--qvrw50dh7j.top:8080/latest_data');
+let ypList = getJson('http://api.xn--qvrw50dh7j.top/latest_data');
 
 const articles = getJson('http://xn--qvrw50dh7j.top/yuanArticles.json')['data'];
 

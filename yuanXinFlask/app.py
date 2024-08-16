@@ -9,8 +9,12 @@ import json
 import os
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from flask_cors import CORS
+from urllib.parse import unquote
 
 app = Flask(__name__)
+CORS(app)
+
 # 初始化 Limiter
 limiter = Limiter(
     get_remote_address,
@@ -137,7 +141,7 @@ def report():
     # 从 GET 请求中获取 Base64 编码的字符串
     
     try:
-        data = request.args.get('data')
+        data = unquote(request.args.get('data'))
         print(data)
         
         # 解码 Base64 字符串

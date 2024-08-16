@@ -3,7 +3,7 @@ const codeInput = document.getElementById('code-input');
 const uid = document.getElementById('uid');
 const type = document.getElementById('type');
 const note = document.getElementById('note');
-const apiUrl = "https://api.xn--qvrw50dh7j.top"
+const apiUrl = "http://127.0.0.1:8080"
 
 function refreshCode() {
     fetch(apiUrl + '/code')
@@ -14,7 +14,8 @@ function refreshCode() {
 
             if (imgElement) {
                 // 设置 img 元素的 src 属性
-                imgElement.src = 'data:image/svg+xml;base64,' + btoa(data.img);
+                // imgElement.src = 'data:image/svg+xml;base64,' + btoa(data.img); For SVG
+                imgElement.src = 'data:image/png;base64,' + data.img;
 
                 code_id = data.img_id;
             } else {
